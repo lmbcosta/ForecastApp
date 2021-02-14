@@ -9,11 +9,21 @@ import UIKit
 import RxSwift
 
 final class ForecastViewController: UIViewController {
+    // MARK: - Properties
+    
     private let viewModel: ForecastViewModelProtocol
     private let disposeBag = DisposeBag()
     private let dataSource: CollectionViewConfigurable
-    private let forecastView = ForecastView()
+    
     private let loadingView = LoadingView()
+    
+    private lazy var forecastView: ForecastView = {
+        let view = ForecastView()
+        view.collectionView.dataSource = dataSource
+        view.collectionView.delegate = dataSource
+        dataSource.registerReusableViews(in: view.collectionView)
+        return view
+    }()
     
     private lazy var refreshControll: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -21,6 +31,8 @@ final class ForecastViewController: UIViewController {
         control.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return control
     }()
+    
+    // MARK: - Initializer
     
     init(viewModel: ForecastViewModelProtocol,
          dataSource: CollectionViewConfigurable) {
@@ -37,16 +49,13 @@ final class ForecastViewController: UIViewController {
         super.viewDidLoad()
         addSubsviews()
         addConstraints()
-        forecastView.collectionView.delegate = dataSource
-        forecastView.collectionView.dataSource = dataSource
-        forecastView.collectionView.addSubview(refreshControll)
-        dataSource.registerReusableViews(in: forecastView.collectionView)
         fetchData()
     }
     
     // MARK: - Private Functions
     
     private func addSubsviews() {
+        forecastView.collectionView.addSubview(refreshControll)
         view.addSubview(forecastView)
         view.addSubview(loadingView)
     }
