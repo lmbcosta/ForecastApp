@@ -17,7 +17,7 @@ Service | Manages network calls to Open Weather API
 Views | Renders UI content 
 
 ## External Dependencies
-ForecastApp has **3** external dependency:</p>
+ForecastApp has **3** external dependencies:</p>
 **[RxSwift](https://github.com/ReactiveX/RxSwift)**: Rx is a generic abstraction of computation expressed through Observable<Element> interface, which lets you broadcast and subscribe to values and other events from an Observable stream.</p>
 **[SnapKit](https://github.com/SnapKit/SnapKit)**: SnapKit is a DSL to make Auto Layout easy on both iOS and OS X.</p>
 **[Charts](https://github.com/danielgindi/Charts)**: Framework that allows to create beatifull charts on a easy way to iOS</p>
