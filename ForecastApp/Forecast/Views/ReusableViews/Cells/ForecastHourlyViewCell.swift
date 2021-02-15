@@ -20,6 +20,7 @@ class ForecastHourlyViewCell: UICollectionViewCell {
     private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 10, weight: .bold)
+        label.textColor = .black
         label.textAlignment = .center
         return label
     }()

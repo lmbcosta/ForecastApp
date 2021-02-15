@@ -18,7 +18,7 @@ class DailySectionHeader: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        backgroundColor = .lightBlueGrey
         addSubsviews()
         addConstraints()
     }
@@ -47,4 +47,10 @@ extension DailySectionHeader {
     func configure(viewModel: ViewModel) {
         titleLabel.text = viewModel.title
     }
+}
+
+extension UIColor {
+    @nonobjc class var lightBlueGrey: UIColor {
+        return UIColor(red: 209.0 / 255.0, green: 213.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
+      }
 }

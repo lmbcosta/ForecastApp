@@ -148,7 +148,13 @@ private extension ForecastViewModel {
                 return nil
             }
             
-            var sections = [today]
+            var sections = [Forecast.SectionViewModel]()
+            
+            if case let .graph(items, _, _) = today.kind,
+               !items.isEmpty {
+                sections.append(today)
+            }
+            
             sections.append(contentsOf: followingDays)
             return .init(header: header, sections: sections)
         }

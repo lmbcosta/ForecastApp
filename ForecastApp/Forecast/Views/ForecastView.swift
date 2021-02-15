@@ -42,12 +42,6 @@ class ForecastView: UIView {
         return label
     }()
     
-    private let bottomView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        return view
-    }()
-    
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -74,19 +68,17 @@ class ForecastView: UIView {
         addSubview(leftLabel)
         addSubview(centerLabel)
         addSubview(rightLabel)
-        addSubview(bottomView)
         addSubview(collectionView)
     }
     
     private func addConstraints() {
         cloudsImageView.snp.makeConstraints({
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.25)
+            $0.edges.equalToSuperview()
         })
         
         leftLabel.snp.makeConstraints({
             $0.size.equalTo(CGSize(width: 50, height: 50))
-            $0.top.equalToSuperview().inset(100)
+            $0.top.equalToSuperview().inset(60)
             $0.leading.equalToSuperview().inset(40)
         })
         
@@ -100,14 +92,9 @@ class ForecastView: UIView {
             $0.trailing.equalToSuperview().inset(40)
         })
         
-        bottomView.snp.makeConstraints({
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(cloudsImageView.snp.bottom)
-        })
-        
         collectionView.snp.makeConstraints({
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(bottomView.snp.top).offset(-40)
+            $0.height.equalToSuperview().multipliedBy(0.75)
         })
     }
 }
